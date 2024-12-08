@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    // "target": "ESNext",
+    // "module": "ESNext",
+    // "moduleResolution": "Bundler",
+    "module": "commonjs",
+    "target": "es2020",
+    "strict": true,
+    "skipLibCheck": true,
+    "lib": ["ESNext"],
+    "types": ["@cloudflare/workers-types/2023-07-01"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx"
+  }
+}

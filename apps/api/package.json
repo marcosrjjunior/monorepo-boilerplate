@@ -1,0 +1,49 @@
+{
+  "name": "api",
+  "description": "boilerplate to run a js server using bun or node",
+  "version": "1.3.0",
+  "author": "Marcos <hello@marcosrjjunior.com>",
+  "scripts": {
+    "bun:dev": "bun run --hot src/bun.ts",
+    "dev": "pnpm node:dev",
+    "node:dev": "tsx watch -r dotenv/config src/node.ts",
+    "node:build": "tsc -p .",
+    "node:start": "node ./dist/node.js",
+    "test": "bun test",
+    "db:migrate:up": "tsx -r dotenv/config ./src/lib/db/migrate latest",
+    "db:migrate:down": "tsx -r dotenv/config ./src/lib/db/migrate down",
+    "db:migrate:redo": "tsx -r dotenv/config ./src/lib/db/migrate redo && pnpm db:generate:types",
+    "db:migrate:create": "tsx -r dotenv/config ./src/lib/db/migrate create initial",
+    "db:seed": "tsx -r dotenv/config ./src/lib/db/seed",
+    "db:reset": "pnpm db:migrate:redo && pnpm db:seed",
+    "db:generate:types": "kanel && pnpm db:types:prettier",
+    "db:types:prettier": "prettier --write ../../packages/core/src/db/schema",
+    "check-types": "tsc --noemit",
+    "lint": "eslint ./src --max-warnings 0 && pnpm check-types",
+    "lint:fix": "eslint ./src --fix",
+    "prettier": "prettier --write ./src"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "@repo/core": "workspace:*",
+    "hono": "^4.6.12",
+    "kysely": "^0.27.4",
+    "kysely-migration-cli": "^0.4.2",
+    "pg": "^8.13.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.14",
+    "@types/pg": "^8.11.10",
+    "dotenv": "^16.4.5",
+    "eslint": "^9.15.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "kanel": "^3.10.3",
+    "kanel-kysely": "^0.5.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.16.0"
+  }
+}

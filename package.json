@@ -1,0 +1,25 @@
+{
+  "name": "monorepo-boilerplate",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "start": "turbo start",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "api:db:migrate:up": "turbo run db:migrate:up --filter=api",
+    "api:db:generate:types": "turbo run db:generate:types --filter=api",
+    "api:node:build": "turbo run node:build --filter=api",
+    "api:node:start": "turbo run node:start --filter=api",
+    "functions:delete-users:dev": "turbo run dev:wrangler --filter=delete-users"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "turbo": "^2.3.3",
+    "typescript": "5.5.4"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=18"
+  }
+}
